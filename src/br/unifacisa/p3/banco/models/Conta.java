@@ -1,5 +1,6 @@
 package br.unifacisa.p3.banco.models;
 
+import br.unifacisa.p3.banco.exceptions.LimiteAtingidoException;
 import br.unifacisa.p3.banco.exceptions.SaqueNegativoException;
 import br.unifacisa.p3.banco.exceptions.ValorZeroException;
 import br.unifacisa.p3.banco.interfaces.Limitavel;
@@ -33,10 +34,10 @@ public abstract class Conta implements Limitavel {
 		this.numero = numero;
 	}
 
-	public final void sacar(double valor) throws ValorZeroException, SaqueNegativoException{
+	public final void sacar(double valor) throws ValorZeroException, SaqueNegativoException, LimiteAtingidoException{
 		if (valor == 0) throw new ValorZeroException();
 		else if (valor < 0) throw new SaqueNegativoException();
-		else if (valor > this.saldo)
+		else if (valor > this.saldo) throw new LimiteAtingidoException();
 		
 		this.saldo -= valor;
 	}
