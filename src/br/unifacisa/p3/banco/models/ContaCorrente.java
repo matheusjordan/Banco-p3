@@ -1,15 +1,16 @@
 package br.unifacisa.p3.banco.models;
 
-import br.unifacisa.p3.banco.enums.Limites;
+import br.unifacisa.p3.banco.enums.ELimites;
 
 public class ContaCorrente extends Conta {
-	private double limite = Limites.CONTACORRENTE.getValor();
+	private double limite = ELimites.CONTACORRENTE.getLimite();
 	
-	public ContaCorrente(int numero, double valor, double limite) {
-		super(numero, valor);
+	public ContaCorrente(int numero, double valor, String titular) {
+		super(numero, valor, titular);
 	}
 
 	public double getLimite() {
-		return 0;
+		return this.limite;
 	}
+
 }
